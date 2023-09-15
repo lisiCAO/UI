@@ -33,13 +33,25 @@ function validatePromptInput(data){
 
 function showTable(rows, cols){
     let newTable = document.createElement("table");
+    newTable.style.border = "1px solid black";
+    newTable.style.borderCollapse = "collapse";
 
     for(let r = 1 ; r <= rows; r++){
+        let newRows = document.createElement("tr");
         
+
+        for(let c = 1; c <= cols; c++){
+            let newCols = document.createElement("td");
+            newCols.style.boder = "1px solid black";
+
+            let data = document.createTextNode( r * c);
+            newCols.appendChild(data);
+            newRows.appendChild(newCols);
+        }
+        newTable.appendChild( newRows);
     }
 }
 
 function getRandomIntForm1(){
-
 }
 
