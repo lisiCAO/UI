@@ -29,14 +29,15 @@ let gameConfig = {
     update: update,
   },
 };
-let spawnRate = 0.02; // 默认出现率
-let balloonSpeed = -100; // 默认上升速度
-let game = new Phaser.Game(gameConfig);
+
+let spawnRate = 0.02; // default building rate
+let balloonSpeed = -100; // default rising rate
+let game = new Phaser.Game(gameConfig); // import Phaser Gmae framework
 let balloons = [];
 let score = 0;
 
 function preload() {
-  // Loading basic resources. Replace these with your game assets.
+  // Loading basic resources. Replace these with game assets.
   this.load.image("balloon", "path_to_balloon_image.png");
 }
 
@@ -44,36 +45,36 @@ function create() {
   // Called once at the beginning
   this.input.keyboard.on("keydown", checkBalloon);
 
-  let isPaused = false; // 初始状态：游戏未暂停
+  let isPaused = false; // initial: not pause
   document.getElementById("pauseButton").addEventListener("click", function () {
     if (!isPaused) {
-      game.scene.pause("default"); // 暂停当前场景，假设场景的key是'default'
+      game.scene.pause("default"); // pause scene;
       document.getElementById("pauseButton").innerText = "Resume Game";
     } else {
-      game.scene.resume("default"); // 恢复当前场景
+      game.scene.resume("default"); // resume scene;
       document.getElementById("pauseButton").innerText = "Pause Game";
     }
-    isPaused = !isPaused; // 切换暂停状态
+    isPaused = !isPaused; // swich state
   });
-  // 创建分数文本
+  // create score table
   scoreText = this.add.text(10, 10, "Score: 0", {
     fontSize: "32px",
     fill: "#fff",
   });
 
-  // 创建计时器文本
+  // creates timers
   timerText = this.add.text(gameConfig.width - 200, 10, "Time: 60s", {
     fontSize: "32px",
     fill: "#fff",
   });
 
-  // 设置60秒计时器
+  // set 60 s timers
   gameTimer = this.time.addEvent({
     delay: 1000,
     callback: updateTime,
     callbackScope: this,
-    loop: false, // 不需要循环
-    repeat: 59, // 重复59次
+    loop: false, // no loop
+    repeat: 59, // repeat each second
   });
 }
 
@@ -82,22 +83,22 @@ function updateTime() {
     timerText.setText('Time: ' + timeLeft + 's');
     if (timeLeft <= 0) {
         gameTimer.remove();
-        endGame();  // 调用游戏结束函数
+        endGame();  // call ending function to end game
     }
 }
 
 function endGame() {
-    game.scene.pause('default');  // 暂停游戏
-    document.getElementById('finalScore').innerText = score;  // 设置最终得分
+    game.scene.pause('default');  // pause the game
+    document.getElementById('finalScore').innerText = score;  // set final score.
 
     // Save score to LocalStorage
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
     leaderboard.push(score);
-    leaderboard.sort((a, b) => b - a); // 从大到小排序
-    if (leaderboard.length > 10) leaderboard.length = 10;  // 只保留前10名
+    leaderboard.sort((a, b) => b - a); // from large to small
+    if (leaderboard.length > 10) leaderboard.length = 10;  // keep ten recordings
     localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
 
-    $('#endGameModal').modal('show');  // 显示模态框
+    $('#endGameModal').modal('show');  // show modal
 }
 
 
@@ -115,10 +116,10 @@ function update() {
 }
 
 function spawnBalloon() {
-    if (Math.random() < spawnRate) { // 使用 spawnRate 控制气球的出现率
+    if (Math.random() < spawnRate) { // use spawnRate to controle the appearance of balloons
         let x = Math.random() * gameConfig.width;
         let balloon = this.physics.add.image(x, gameConfig.height, "balloon");
-        balloon.setVelocityY(balloonSpeed); // 使用 balloonSpeed 控制气球的上升速度
+        balloon.setVelocityY(balloonSpeed); // use balloonSpeed to control the speed of rising
     
 
     balloon.character = String.fromCharCode(
@@ -138,9 +139,8 @@ function spawnBalloon() {
 
 function checkBalloon(event) {
   let char = event.key;
-  // 这次我们不使用'break'，这样就可以检查和消除所有匹配的气球
   for (let i = balloons.length - 1; i >= 0; i--) {
-    // 我们从后往前遍历数组，这样在移除元素时不会出问题
+    // iterate from the end
     if (balloons[i].character === char) {
       balloons[i].balloonText.destroy(); // destroy the text object
       balloons[i].destroy(); // destroy the balloon
@@ -150,8 +150,6 @@ function checkBalloon(event) {
     }
   }
 }
-
-
 
 document.getElementById('startButton').addEventListener('click', function() {
     const difficulty = document.getElementById('difficultySelector').value;
@@ -177,11 +175,10 @@ document.getElementById('startButton').addEventListener('click', function() {
 });
 
 document.getElementById("endButton").addEventListener("click", function () {
-  // 如果您只是想重新加载页面来退出游戏，可以使用:
+  // reload the page for ending the game
   location.reload();
 
-  // 如果您有一个特定的主页或者其他页面，您想在退出游戏后导航到，使用:
-  // window.location.href = 'your_homepage_url';
+  // window.location.href = 'homepage_url';
 });
 
   document.getElementById("leaderboardButton").addEventListener("click", function () {
@@ -193,5 +190,5 @@ document.getElementById("endButton").addEventListener("click", function () {
     }
 
     document.getElementById('leaderboardList').innerHTML = leaderboardHTML;
-    $('#leaderboardModal').modal('show');  // 显示排行榜模态框
+    $('#leaderboardModal').modal('show');  // show leadertable
 });
