@@ -1,0 +1,160 @@
+<!--
+ --------------------------------------------------------------
+ Balloon Typing Game - A fun and interactive typing game.
+ Author: Lisi Cao - Team ForxTrot
+ Date: September 15, 2023
+ Version: 1.0.0
+ Copyright (C) 2023 Team ForxTrot. All rights reserved.
+-->>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Balloon Game</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Typing Balloon Game</a>
+    </nav>
+
+    <div
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      id="game-modal"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Welcome to Typing Balloon Game!</h5>
+          </div>
+          <div class="modal-body">
+            <h6>Select Difficulty:</h6>
+            <select class="form-control" id="difficultySelector">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="startButton">
+              Start Game
+            </button>
+            <button type="button" class="btn btn-info" id="leaderboardButton">
+              Leaderboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="endGameModal"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="endGameLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="endGameLabel">Game Over</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Your final score is: <span id="finalScore">0</span>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Leaderboard Modal -->
+    <div
+      class="modal fade"
+      id="leaderboardModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="leaderboardModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="leaderboardModalLabel">Leaderboard</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul id="leaderboardList"></ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      id="pauseButton"
+      class="btn btn-warning"
+      style="position: absolute; top: 60px; right: 20px"
+    >
+      Pause Game
+    </button>
+
+    <div id="gameArea" style="margin: 20px"></div>
+    <button
+      id="endButton"
+      class="btn btn-danger"
+      style="position: absolute; top: 20px; right: 20px"
+    >
+      End Game
+    </button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.54.0/dist/phaser.min.js"></script>
+    <script src="scripts/scripts.js"></script>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#game-modal").modal("show");
+    });
+  </script>
+</html>
