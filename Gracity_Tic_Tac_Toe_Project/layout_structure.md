@@ -32,26 +32,74 @@
 - **Width**: 320px.
 - **Height**: Estimated around 600px, but can vary based on the components.
 
-**Launcher**:
-- Positioned at the top section of the game area.
+---
 
-**Components within Launcher**:
-- **Number of Players**:
-  - Options are 2 or 3.
-  - Displayed as radio buttons with a label.
-- **Symbol Selection**:
-  - Choices: Triangle, Circle, Square.
-  - Displayed as radio buttons or interactive icons.
-- **Start Game Button**:
-  - Placed below the player and symbol selections.
-- **Rankings Button**:
-  - Positioned adjacent to the "Start Game" button.
+## **Visual on Page Load**
 
-**Game Board**:
-- Located beneath the launcher, centered in the game area.
-- Grid layout of 4x4.
-  - Each cell with dimensions of 60px x 60px.
-  - 10px spacing between cells.
+### **Launcher Module**:
+
+- **Position**: Center of the screen (considering the navbar height).
+- **Width**: 400px.
+- **Height**: 280px.
+- **Background Color**: Light gray (`#E5E5E5`).
+- **Border**: 2px solid `#BFBFBF`.
+- **Border Radius**: 10px.
+
+**Internal Layout of the Launcher**:
+1. **Title**:
+    - Text: "Select Game Settings".
+    - Font Size: 24px.
+    - **Position**: Centered at the top.
+    - Margin to next component: 20px.
+
+2. **Number of Players Selector**:
+    - Label: "Choose Number of Players".
+    - Options: 2 or 3.
+    - Display: Radio buttons.
+    - **Position**: Centered below the title.
+    - Margin to next component: 20px.
+
+3. **Symbol Selector**:
+    - Label: "Choose Your Symbol".
+    - Symbols: Triangle, Circle, Square.
+    - Display: Clickable icons with a highlight on select.
+    - **Position**: Centered below the number of players selector.
+    - Margin to next component: 20px.
+
+4. **Start Game Button**:
+    - Text: "Start Game".
+    - **Position**: Centered below the symbol selector.
+    - Margin to next component: 20px.
+
+5. **Rankings Button**:
+    - Text: "View Rankings".
+    - **Position**: To the right of the start game button, aligned horizontally.
+
+---
+
+## **Visual After Game Launch**
+
+### **Game Area**:
+- **Position**: Centered in the browser, subtracting the navbar height.
+- **Width**: 320px (60*4 + 10*3 for spaces in between).
+- **Height**: 320px (60*4 + 10*3 for spaces in between).
+- **Background Color**: White (`#FFFFFF`).
+- **Border**: 1px solid `#BFBFBF`.
+
+### **Navbar**:
+- **Timer**:
+    - Displayed as a 30-second countdown.
+    - Font Size: 20px.
+    - **Position**: Left.
+
+- **Pause Button**:
+    - Text: "Pause".
+    - **Position**: Center.
+
+- **End Game Button**:
+    - Text: "End Game".
+    - **Position**: Right.
+
 
 **Game Controls**:
 - Located below the game board.
@@ -72,13 +120,4 @@
 - **Font Size**: 12px.
 - The copyright text is centered.
 
-### **Color Palette & Aesthetics**:
-- **Primary Color**: Dark blue (`#2E5BFF`).
-- **Secondary Color**: Light gray (`#E5E5E5`).
-- **Highlight Color**: Gold (`#FFD700`).
-- **Background Color**: White (`#FFFFFF`).
-- **Text Color**: Dark gray (`#333333`).
-
----
-
-The layout seems detailed and structured. The next step would be to translate these parameters into visual mock-ups on Figma. If you need any further adjustments or refinements, let me know!
+ [Visit Figma](https://www.figma.com/file/lrPh2O2H8pjsAqQJy1AkWK/Untitled?type=design&node-id=0-1&mode=design&t=8hFdyVYUOP2DlZKf-0 "Figma Web Design")
