@@ -1,31 +1,59 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <nav id = "navbar">
-            <div id = "navbar-logo"><img src="" alt = "logo"></div>
-        </nav>
-        <!-- Game Area Container -->
-        <div class = "game-wrapper">
-            <div class = "game-area">
-                <div class="game-area-content">
-                    <!-- Scripts create -->
-                </div>
-            </div>
-        </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gravity Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav id="navbar">
+      <div id="navbar-logo">
+        <img src="" alt="logo" />
+      </div>
+      <div id="game-name">
+        <h1>Gravity TIC TAC TOE</h1>
+      </div>
+      <div id="game-controls" class="hidden">
+        <span id="timer">30</span>
+        <button id="pauseBtn">Pause</button>
+        <button id="endGameBtn">End Game</button>
+      </div>
+    </nav>
+
+    <!-- Game Area -->
+    <div class="game-wrapper hidden">
+      <div class="game-area">
+        <!-- Game grid will be generated here -->
+      </div>
+    </div>
+
+    <!-- Launcher Modal -->
+    <div id="launcherModal" class="launcher-modal">
+      <h2>Select Game Settings</h2>
+      <div class="players-selector">
+            <label>Choose Number of Players:</label>
+            <input type="radio" name="players" value="2" /> 2
+            <input type="radio" name="players" value="3" /> 3
+
         
-        <footer id = "footer">
-            <p>
-                &copy; 2023 Group Foxtrot. All rights reserved.
-            </p>
-        </footer>
-        <script src="javascripts/scripts.js" async defer></script>
-    </body>
+      </div>
+      <div class="symbol-selector">
+          <label>Choose Your Symbol:</label>
+          <span data-symbol="triangle">△</span>
+          <span data-symbol="circle">◯</span>
+          <span data-symbol="square">□</span>
+      </div>
+      <button id="startGameBtn">Start Game</button>
+      <button id="viewRankingsBtn">View Rankings</button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <p>&copy; 2023 Group Foxtrot. All rights reserved.</p>
+    </footer>
+
+    <script src="javascripts/scripts.js"></script>
+  </body>
 </html>

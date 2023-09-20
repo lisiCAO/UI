@@ -1,0 +1,52 @@
+/* Google font */
+@import url('https://fonts.googleapis.com/css2?family=Butterfly+Kids&family=Nunito:wght@200;500;800&display=swap');
+/*
+font-family: 'Butterfly Kids', cursive;
+font-family: 'Nunito', sans-serif;
+*/
+
+html {
+	font-family: 'Nunito', sans-serif;
+}
+
+body {
+  width: 80%;
+  margin: 0 auto;
+}
+
+h1, h2 {
+	font-family: 'Butterfly Kids', cursive;
+	margin: 10px 0;
+}
+
+h1 {
+  font-size: 5em;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.5rem;
+  letter-spacing: -5px;
+}
+
+header p {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+main section {
+  width: 33%;
+  float: left;
+}
+
+main p {
+	font-size: 0.8rem;
+  margin: 5px 0 -5px;
+}
+
+main ul {
+  margin-top: 3px;
+	font-size: 0.75rem;
+	list-style-type: none;
+}

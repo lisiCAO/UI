@@ -1,0 +1,72 @@
+{
+	"schoolName": "Imaginarium Prep",
+	"schoolFounded": 1923,
+	"schoolAddress": {
+		"streetNumber": "31",
+		"streetName": " Spooner",
+		"city": "Fakerville",
+		"state": "West Oklarado"
+	},
+	"schoolPhone" : "528-272-7478",
+	"headMaster": "Jocelyn Weber",
+	"headMasterOnSite": true,
+	"isPrivate": true,
+	"studentCount": 1330,
+	"educators": [
+		{
+			"name": "Brittany Hansen",
+			"office": "C29",
+			"extension": 3451,
+			"priority": 3,
+			"subjects": [
+				"Auctioneering",
+				"Metalsmithing",
+				"Bakery Science"
+			]
+		},
+		{
+			"name": "Jori May",
+			"office": "M87",
+			"extension": 3489,
+			"priority": 3,
+			"subjects": [
+				"Ecogastronomy",
+				"Surf Science and Technology",
+				"Metalsmithing"
+			]
+		},
+		{
+			"name": "Thaxter Goodall",
+			"office": "C02",
+			"extension": 3401,
+			"priority": 1,
+			"subjects": [
+				"Fermentation Sciences",
+				"Auctioneering",
+				"Viticulture and Enology"
+			]
+		},
+		{
+			"name": "Robert Mccarthy",
+			"office": "M82",
+			"extension": 3457,
+			"priority": 2,
+			"subjects": [
+				"Ecogastronomy",
+				"Nautical Archaeology",
+				"Astrobiology"
+			]
+		},
+		{
+			"name": "Igor Glover",
+			"office": "W88",
+			"extension": 3434,
+			"priority": 1,
+			"subjects": [
+				"Viticulture and Enology",
+				"Metalsmithing",
+				"Bagpiping"
+			]
+		}
+	]
+}
