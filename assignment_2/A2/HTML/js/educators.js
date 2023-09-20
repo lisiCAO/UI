@@ -15,7 +15,7 @@ script.onload = function () {
 
 document.getElementsByTagName("head")[0].appendChild(script);
 
-/* Main function */
+/* Principal function once loaded*/
 function fetchDataAndPopulate() {
     $(document).ready(function() {
 
@@ -23,7 +23,6 @@ function fetchDataAndPopulate() {
       fetch("js/educators.json")
       .then(response => response.json())
       .then(data => {
-          console.log("Data fetched", data);
           populateSchoolInfo(data);
           populateEducators(data, data.educators);
       })
@@ -32,7 +31,7 @@ function fetchDataAndPopulate() {
       });
 
         /**
-         * Output principal information of the school
+         * Output principal information of the school in header
          * @param {*} data 
          */
         function populateSchoolInfo(data) {
@@ -46,7 +45,7 @@ function fetchDataAndPopulate() {
         }
 
         /**
-         * Display educators' contact information and courses
+         * Display educators' contact information and courses in main
          * @param {*} data 
          * @param {*} educators 
          */
