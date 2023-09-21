@@ -1,59 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gravity Tic Tac Toe</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav id="navbar">
-      <div id="navbar-logo">
-        <img src="" alt="logo" />
-      </div>
-      <div id="game-name">
-        <h1>Gravity TIC TAC TOE</h1>
-      </div>
-      <div id="game-controls" class="hidden">
-        <span id="timer">30</span>
-        <button id="pauseBtn">Pause</button>
-        <button id="endGameBtn">End Game</button>
-      </div>
-    </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Title</title>
+    <!-- Import css file -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Navbar -->
+        <nav id="navbar">
+            <div id="logo">LOGO HERE</div>
+            <div id="game-name"><h1>Gravity Tic-Tac-Toe</h1></div>
+        </nav>
+    </header>
+    <!-- End of Header-->
+    <!-- Main -->
+    <main>
 
-    <!-- Game Area -->
-    <div class="game-wrapper hidden">
-      <div class="game-area">
-        <!-- Game grid will be generated here -->
-      </div>
+        <!-- Message -->
+    <div id="message" hidden>
+        <!-- Generate info here-->
     </div>
 
     <!-- Launcher Modal -->
-    <div id="launcherModal" class="launcher-modal">
-      <h2>Select Game Settings</h2>
-      <div class="players-selector">
-            <label>Choose Number of Players:</label>
-            <input type="radio" name="players" value="2" /> 2
-            <input type="radio" name="players" value="3" /> 3
+    <div id="launcher">
+        <!-- Title -->
+        <h1 id="title">Game Title</h1>
+        <!-- Number Option -->
+        <section id="player-number-selection">
+            <label>
+                <input type="radio" name="player-number" value="2"> 2 Players
+            </label>
+            <label>
+                <input type="radio" name="player-number" value="3"> 3 Players
+            </label>
+        </section>
 
-        
-      </div>
-      <div class="symbol-selector">
-          <label>Choose Your Symbol:</label>
-          <span data-symbol="triangle">△</span>
-          <span data-symbol="circle">◯</span>
-          <span data-symbol="square">□</span>
-      </div>
-      <button id="startGameBtn">Start Game</button>
-      <button id="viewRankingsBtn">View Rankings</button>
+        <!-- Symbol Option -->
+        <section id="symbol-selection">
+            <!-- Dynamically populated based on player number -->
+        </section>
+
+        <!-- Board Size -->
+        <section>
+            <label for="board-size-selection">Choose board size:</label>
+            <select id="board-size-selection" name="board-size">
+                <option value="easy">Easy (4x4)</option>
+                <option value="middle">Middle (7x7)</option>
+                <option value="hard">Hard (10x10)</option>
+            </select>
+        </section> 
+
+        <!-- Buttons -->
+        <div class="btn">
+            <button id="start-game">Start Game</button>
+            <button id="show-leaderboard">Leader Board</button>
+        </div>
+
     </div>
+
+    <!-- Game Area (Initially Hidden) -->
+    <div id="game-area"></div>
+
+    <!-- Leaderboard Modal -->
+<div id="leaderboard-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Leaderboard</h2>
+      <ul id="leaderboard-list">
+        <!-- Generate Leader Player Here-->
+      </ul>
+    </div>
+  </div>
+    </main>
+    <!-- End of Main -->
 
     <!-- Footer -->
     <footer id="footer">
-      <p>&copy; 2023 Group Foxtrot. All rights reserved.</p>
-    </footer>
+        <p>&copy; 2023 Group Foxtrot. All rights reserved.</p>
+      </footer>
 
-    <script src="javascripts/scripts.js"></script>
-  </body>
+      <!-- Import scripts file -->
+    <script src="/javascripts/scripts.js"></script>
+</body>
 </html>
+
