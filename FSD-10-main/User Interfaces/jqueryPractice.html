@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>jQuery Practice</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+	<h1>Hello World</h1>
+	<p>apples</p>
+	<p>Bananas</p>
+	<!-- jquery library-->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>		
+		<script>
+			
+			$(document).ready(function(){
+				sayBye();
+				// do stuff because our DOM is loaded
+				console.log("Page loaded");
+				$(".myClass");
+				$("#home");
+				$("header > h1");
+				$("h1").css("color", "hotpink");
+
+				// functinos here are only accessible within the ready block
+				function sayHi(){
+					console.log("Hi");
+				}
+				function sayHello(){
+					console.log("Hello");
+					sayHi();
+				}
+
+				sayHello();
+
+				$("p").css("color", "red");
+			});
+
+			function sayBye(){
+				// sayHi();
+				console.log("Bye");
+				$("h1").css("background-color", "green");
+				// jQuery("h1").css("color", "green"); // same 
+			}
+		</script>	
+	</body>
+</html>
