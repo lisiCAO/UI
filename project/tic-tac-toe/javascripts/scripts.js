@@ -1,3 +1,15 @@
+/*
+  Gravity Tic-Tac-Toe
+  JavaScript file for the Gravity Tic-Tac-Toe game
+  Author: Group ForxTox
+   Team members: 
+    - Cao, Lisi
+    - Kim, Sang Kyu
+    - Kim, Bo Kyung
+  Date: 2023-09-21
+  Version: 2.3
+ */
+
 document.addEventListener("DOMContentLoaded", function () {
   // DOM elements initialization
   const playerNumberSelection = document.querySelector(
@@ -20,6 +32,60 @@ document.addEventListener("DOMContentLoaded", function () {
   let countdownInterval;
   const initialTime = 30; // 30 seconds
   let currentTime = initialTime;
+
+  let gameRulesData = {}; // initialize as an empty object
+  fetch("javascripts/game_guide.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      gameRulesData = data;
+      // Add event listener here
+      document.getElementById('showRules').addEventListener('click', function() {
+        const modal = document.getElementById('gameRulesModal');
+        modal.innerHTML = '';  
+      
+        gameRulesData.sections.forEach(section => {
+            const sectionElem = document.createElement('div');
+      
+            // Only add title and content if they exist and are not undefined
+            if (section.title) sectionElem.innerHTML += `<h2>${section.title}</h2>`;
+            if (section.content) sectionElem.innerHTML += `<p>${section.content}</p>`;
+            
+            modal.appendChild(sectionElem);
+            
+            if (section.subsections) {
+                section.subsections.forEach(sub => {
+                    const subSectionElem = document.createElement('div');
+      
+                    // Only add title and content if they exist and are not undefined
+                    if (sub.title) subSectionElem.innerHTML += `<h3>${sub.title}</h3>`;
+                    if (sub.content) subSectionElem.innerHTML += `<p>${sub.content}</p>`;
+                    
+                    sectionElem.appendChild(subSectionElem);
+                });
+            }
+        });
+      
+        modal.style.display = 'block';  
+        document.getElementById("launcher").style.display = "none";
+      });
+    })
+    .catch((error) => {
+      console.error("Fetch error: ", error.message);
+    });
+
+  // Optionally: Close the modal when clicking outside
+  document
+    .getElementById("gameRulesModal")
+    .addEventListener("click", function () {
+      this.style.display = "none"; // Hide the modal
+      document.getElementById("launcher").style.display = "block";
+    });
+
   // Event listeners for leaderboard modal
   leaderboardBtn.addEventListener("click", showLeaderboard);
   closeBtn.addEventListener("click", function () {
@@ -70,13 +136,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  /* Prepare Game Board */
+  function hasDuplicates(array) {
+    return new Set(array).size !== array.length;
+  }
+  /**
+   * Prepare Game Board
+   */
   // Game initialization on "start game" button click
   startGameButton.addEventListener("click", () => {
+    const playerNumberRadioButtons = document.querySelectorAll(
+      "#player-number-selection input[type='radio']"
+    );
+    const checkedRadioButton = Array.from(playerNumberRadioButtons).find(
+      (radio) => radio.checked
+    );
+    // Check if player number is selected
+    if (!checkedRadioButton) {
+      alert("Please select the number of players before starting the game!");
+      return;
+    }
+
+    const numberOfPlayers = parseInt(checkedRadioButton.value);
+    const selectedSymbols = Array.from(
+      symbolSelection.querySelectorAll("select")
+    ).map((select) => select.value);
+    // Check if all players have selected symbols
+    if (hasDuplicates(selectedSymbols)) {
+      alert(
+        "Please ensure all players have unique symbols before starting the game!"
+      );
+      return;
+    }
+
     startGameNavbar();
     updateMessage();
     // Gather selections
-    const numberOfPlayers = parseInt(playerNumberSelection.value);
     symbols = Array.from(symbolSelection.querySelectorAll("select")).map(
       (select) => select.value
     );
@@ -120,6 +214,19 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < boardDimensions * boardDimensions; i++) {
       let cell = document.createElement("div");
       cell.className = "chess-cell";
+      console.log("size:" + boardDimensions);
+      switch (boardDimensions) {
+        case 4:
+          cell.style.fontSize = "14vh";
+          break;
+        case 7:
+          cell.style.fontSize = "8vh";
+          break;
+        case 10:
+          cell.style.fontSize = "5.6vh";
+          break;
+      }
+      console.log("fontsize:" + cell.style.fontSize);
       cell.addEventListener("click", handleCellClick);
       gameArea.appendChild(cell);
     }
@@ -143,11 +250,18 @@ document.addEventListener("DOMContentLoaded", function () {
     cell.textContent = symbols[currentTurn];
     cell.classList.add(`player-${currentTurn}`);
 
-    // Check for game end conditions
-    if (checkGameEnd()) {
+    const gameStatus = checkGameEnd();
+
+    if (gameStatus === "win") {
       setTimeout(() => {
         alert(`Player ${currentTurn + 1} wins!`);
         registerWinner(`Player ${currentTurn + 1} `);
+        resetGame();
+      }, 100);
+      return;
+    } else if (gameStatus === "draw") {
+      setTimeout(() => {
+        alert("Ready for a rematch?");
         resetGame();
       }, 100);
       return;
@@ -166,20 +280,30 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   function checkGameEnd() {
     const cells = document.querySelectorAll(".chess-cell");
+    const filledCells = Array.from(cells).filter(
+      (cell) => cell.textContent !== ""
+    ).length;
     const boardDimensions = Math.sqrt(cells.length);
     const winCondition = 3;
+    if (filledCells === cells.length) {
+      setTimeout(() => {
+        alert("It's a draw!");
+        resetGame();
+      }, 100);
+      return "draw";
+    }
 
     // Horizonal
     for (let row = 0; row < boardDimensions; row++) {
       if (checkRow(cells, row, boardDimensions, winCondition)) {
-        return true;
+        return "win";
       }
     }
 
     // Vertical
     for (let col = 0; col < boardDimensions; col++) {
       if (checkColumn(cells, col, boardDimensions, winCondition)) {
-        return true;
+        return "win";
       }
     }
 
@@ -188,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
       checkDiagonal(cells, boardDimensions, winCondition, true) ||
       checkDiagonal(cells, boardDimensions, winCondition, false)
     ) {
-      return true;
+      return "win";
     }
     // Check all Diagonal
     for (let i = 0; i < boardDimensions; i++) {
@@ -206,10 +330,10 @@ document.addEventListener("DOMContentLoaded", function () {
         checkDiagonal(cells, boardDimensions, winCondition, 0, i, false)
       ) {
         // From left-dowm to right-top change start colum
-        return true;
+        return "win";
       }
     }
-    return false;
+    return "continue";
   }
   /**
    * Check Row
@@ -417,8 +541,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Remove Navbar
     const navbar = document.getElementById("navbar");
     navbar.innerHTML = `
-          <div id="logo">LOGO HERE</div>
-          <div id="game-name">Game Name</div>
+    <div id="logo"><img id ="logo-img" src="img/fox.png" alt="logo" class="logo"></div>
+    <div id="game-name"><h1>Gravity Tic-Tac-Toe</h1></div>
       `;
 
     // Remove Board

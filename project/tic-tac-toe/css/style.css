@@ -1,16 +1,31 @@
-*{
+/*
+  Gravity Tic-Tac-Toe
+  CSS file
+  Author: Group ForxTox
+  Team members: 
+    - Cao, Lisi
+    - Kim, Sang Kyu
+    - Kim, Bo Kyung
+  Date: 2023-09-21
+  Version: 2.3
+ */
+ 
+/* Global styles */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #f9f9f9;
 }
 
-main{
+main {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -18,11 +33,13 @@ main{
   align-items: center;
   position: relative;
 }
+/* End of global styles */
 
+/* Styles for the header */
 #navbar {
   width: 100%;
-  height:40px;
-  background-color: #333;
+  height: 40px;
+  background-color: rgb(93, 99, 185);
   color: antiquewhite;
   padding: 1rem;
   display: flex;
@@ -45,7 +62,7 @@ main{
   float: left;
 }
 
-#game-name{
+#game-name {
   margin: 0 auto;
   color: antiquewhite;
   text-align: center;
@@ -53,37 +70,72 @@ main{
   left: 50%;
   transform: translateX(-50%);
 }
-/* 隐藏模态框 */
+
+/* Styles for the modal backdrop */
 .modal {
-  display: none;
-  position: fixed;
+  display: none; /* By default, it will not be displayed */
+  position: fixed; /* Fixed position */
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.7); /* Black with a touch of transparency */
+  z-index: 1000; /* High z-index to ensure it appears above other elements */
 }
 
+/* Styles for the modal content */
 .modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 200px;
-  min-height: 300px;
-  border: 2px solid lightgray;
-  border-radius: 10px;
+  background-color: #fefefe;
+  margin: 5% auto; /* 5% from the top and centered */
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: 1px solid #888;
+  width: 60%; /* Define a width for the modal. Change if necessary */
+  height: 70%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Add some shadow for a touch of depth */
+  position: relative; /* Relative positioning for the close button */
 }
 
+/* Close button style */
 .close {
+  color: #aaa;
   float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 10px;
   cursor: pointer;
 }
 
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#leaderboard-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#leaderboard-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#leaderboard-list li:last-child {
+  border-bottom: none;
+}
+
+/* Styles for the launcher */
 #launcher {
   position: relative;
   background-color: #e5e5e5;
@@ -108,59 +160,112 @@ label {
   margin: 15px;
 }
 
-#btn{
+#btn {
   display: flex;
-  justify-content: center; /* 按钮之间和容器边界之间都有空间 */
+  justify-content: center; 
   align-items: center;
-  flex-direction: row; /* 这实际上是默认值，可以省略 */
-  width: 100%; /* 根据需要可以调整，确保它足够宽以容纳所有的按钮 */
+  flex-direction: row; 
+  width: 100%; 
 }
+
+#logo-img {
+  width: 30px;
+  height: 30px;
+}
+
+/* #gameRulesModal{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: antiquewhite;
+  overflow: auto;
+  padding: 4vw;
+  box-sizing: border-box;  
+  line-height: 1.5;
+} */
+
+#gameRulesModal {
+  display: none;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 600px;
+  margin: 50px auto;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+}
+
+#gameRulesModal h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+#gameRulesModal h3 {
+  font-size: 20px;
+  color: #555;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+#gameRulesModal p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
 
 button {
   display: inline;
   text-align: center;
   width: 7rem;
   padding: 10px;
-  background-color: #333;
-  color: #fff;
+  background-color: rgb(93, 99, 185);
+  color: antiquewhite;
   border: none;
   border-radius: 25px;
   cursor: pointer;
 }
 
-
 button:hover {
-  background-color: #555;
+  background-color:rgb(147, 146, 214);
 }
+/* End of styles for the launcher */
 
+/* Styles for the game area */
 #game-area {
   display: none; /* Initially hidden */
   position: relative;
-  width: calc(100vw * 0.70);
-  height: calc(100vw * 0.70);
+  width: calc(100vw * 0.7);
+  height: calc(100vw * 0.7);
   max-width: 70vh;
   max-height: 70vh;
-  gap:1vh;
+  gap: 1vh;
   padding: 4vh;
-  background-color: #eee;
+  background-color: antiquewhite;
   border: 1px solid #ddd;
 }
 
 .chess-cell {
   background-color: white;
-  border: 1px solid #BFBFBF;
-  display: flex;            /* 使用flexbox来居中内容 */
-  justify-content: center;  /* 水平居中 */
-  align-items: center;      /* 垂直居中 */
+  border: 1px solid #FF0000; /* default border */
+  transition: border 0.1s ease; /* smooth transition */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   font-weight: 900;
-  font-size: 4vmin;
+  overflow: hidden;
 }
 
-.row {
-  margin-bottom: 5px;
+.chess-cell:hover {
+  border-color: rgb(147, 146, 214); /* change border on hover */
 }
 
-/* 如果你想为不同玩家的符号设置不同的颜色，你可以添加以下样式 */
 .player-0 {
   color: red;
 }
@@ -170,22 +275,25 @@ button:hover {
 }
 
 .player-2 {
-  color:green;
+  color: green;
 }
+/* End of styles for the game area */
 
+/* Styles for the footer */
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #333;
+  background-color: rgb(93, 99, 185);
   height: 40px;
   text-align: center;
   position: fixed;
   bottom: 0;
   width: 100%;
-  z-index: 2; 
+  z-index: 2;
 }
 
 footer p {
   color: antiquewhite;
 }
+/* End of styles for the footer */

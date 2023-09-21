@@ -1,71 +1,91 @@
+<!--
+ Gravity Tic-Tac-Toe
+ HTML file for the game
+ Author: Group ForxTox
+ Team members: 
+    - Cao, Lisi
+    - Kim, Sang Kyu
+    - Kim, Bo Kyung
+ Date: 2023-09-21
+ Version: 2.3
+
+-->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game Title</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!-- Import CSS file-->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <header>
-        <!-- Navbar -->
-        <nav id="navbar">
-            <div id="logo">LOGO HERE</div>
-            <div id="game-name"><h1>Gravity Tic-Tac-Toe</h1></div>
-        </nav>
+      <!-- Navbar -->
+      <nav id="navbar">
+        <div id="logo">
+          <img id="logo-img" src="img/fox.png" alt="logo" class="logo" />
+        </div>
+        <div id="game-name"><h1>Gravity Tic-Tac-Toe</h1></div>
+        <button id="showRules">Game Rules</button>
+      </nav>
     </header>
     <main>
+      <div id="message" hidden></div>
 
-    <div id="message" hidden></div>
-
-    <!-- Launcher Modal -->
-    <div id="launcher">
-        <h1 id="title">Game Title</h1>
+      <!-- Launcher Modal -->
+      <div id="launcher">
+        <h1 id="title">Game Launcher</h1>
         <section id="player-number-selection">
-            <label>
-                <input type="radio" name="player-number" value="2"> 2 Players
-            </label>
-            <label>
-                <input type="radio" name="player-number" value="3"> 3 Players
-            </label>
+          <label>
+            <input type="radio" name="player-number" value="2" /> 2 Players
+          </label>
+          <label>
+            <input type="radio" name="player-number" value="3" /> 3 Players
+          </label>
         </section>
         <section id="symbol-selection">
-            <!-- Dynamically populated based on player number -->
+          <!-- Dynamically populated based on player number -->
         </section>
         <section>
-            <label for="board-size-selection">Choose board size:</label>
-            <select id="board-size-selection" name="board-size">
-                <option value="easy">Easy (4x4)</option>
-                <option value="middle">Middle (7x7)</option>
-                <option value="hard">Hard (10x10)</option>
-            </select>
-        </section> 
+          <label for="board-size-selection">Choose board size:</label>
+          <select id="board-size-selection" name="board-size">
+            <option value="easy">Easy (4x4)</option>
+            <option value="middle">Middle (7x7)</option>
+            <option value="hard">Hard (10x10)</option>
+          </select>
+        </section>
         <div class="btn">
-            <button id="start-game">Start Game</button>
-            <button id="show-leaderboard">Leader Board</button>
+          <button id="start-game">Start Game</button>
+          <button id="show-leaderboard">Leader Board</button>
         </div>
+      </div>
 
-    </div>
+      <!-- Game Area (Initially Hidden) -->
+      <div id="game-area"></div>
 
-    <!-- Game Area (Initially Hidden) -->
-    <div id="game-area"></div>
+      <!-- Modal for Game Rules (initially hidden) -->
+      <div
+        id="gameRulesModal"
+      >
+        <!-- Content will be filled dynamically using JavaScript -->
+      </div>
 
-    <!-- Leaderboard 模态框 -->
-<div id="leaderboard-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Leaderboard</h2>
-      <ul id="leaderboard-list">
-        <!-- 赢家名单将被填充在这里 -->
-      </ul>
-    </div>
-  </div>
+      <!-- Leaderboard Modal -->
+      <div id="leaderboard-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Leaderboard</h2>
+          <ul id="leaderboard-list">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+      </div>
     </main>
     <!-- Footer -->
     <footer id="footer">
-        <p>&copy; 2023 Group Foxtrot. All rights reserved.</p>
-      </footer>
-    <script src="/javascripts/scripts.js"></script>
-</body>
+      <p>&copy; 2023 Group Foxtrot. All rights reserved.</p>
+    </footer>
+    <script src="javascripts/scripts.js"></script>
+  </body>
 </html>
-

@@ -1,6 +1,3 @@
-Absolutely! Below is a structured markdown document describing the game rules based on the logic provided previously:
-
----
 
 # Game Rules Documentation
 
@@ -65,7 +62,3 @@ This game offers a strategy-based board game experience where players take turns
 ### **2. Leaderboard**
 - The game records the most recent winners.
 - Up to ten winners can be displayed in the leaderboard.
-
----
-
-This document provides a clear set of rules for the game based on the provided logic. Please review and let me know if any modifications are required!
