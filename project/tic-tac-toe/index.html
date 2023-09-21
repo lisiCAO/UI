@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Title</title>
-    <!-- Import css file -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <!-- Navbar -->
         <nav id="navbar">
@@ -16,20 +14,13 @@
             <div id="game-name"><h1>Gravity Tic-Tac-Toe</h1></div>
         </nav>
     </header>
-    <!-- End of Header-->
-    <!-- Main -->
     <main>
 
-        <!-- Message -->
-    <div id="message" hidden>
-        <!-- Generate info here-->
-    </div>
+    <div id="message" hidden></div>
 
     <!-- Launcher Modal -->
     <div id="launcher">
-        <!-- Title -->
         <h1 id="title">Game Title</h1>
-        <!-- Number Option -->
         <section id="player-number-selection">
             <label>
                 <input type="radio" name="player-number" value="2"> 2 Players
@@ -38,13 +29,9 @@
                 <input type="radio" name="player-number" value="3"> 3 Players
             </label>
         </section>
-
-        <!-- Symbol Option -->
         <section id="symbol-selection">
             <!-- Dynamically populated based on player number -->
         </section>
-
-        <!-- Board Size -->
         <section>
             <label for="board-size-selection">Choose board size:</label>
             <select id="board-size-selection" name="board-size">
@@ -53,8 +40,6 @@
                 <option value="hard">Hard (10x10)</option>
             </select>
         </section> 
-
-        <!-- Buttons -->
         <div class="btn">
             <button id="start-game">Start Game</button>
             <button id="show-leaderboard">Leader Board</button>
@@ -65,25 +50,21 @@
     <!-- Game Area (Initially Hidden) -->
     <div id="game-area"></div>
 
-    <!-- Leaderboard Modal -->
+    <!-- Leaderboard 模态框 -->
 <div id="leaderboard-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Leaderboard</h2>
       <ul id="leaderboard-list">
-        <!-- Generate Leader Player Here-->
+        <!-- 赢家名单将被填充在这里 -->
       </ul>
     </div>
   </div>
     </main>
-    <!-- End of Main -->
-
     <!-- Footer -->
     <footer id="footer">
         <p>&copy; 2023 Group Foxtrot. All rights reserved.</p>
       </footer>
-
-      <!-- Import scripts file -->
     <script src="/javascripts/scripts.js"></script>
 </body>
 </html>

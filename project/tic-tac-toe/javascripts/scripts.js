@@ -12,22 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const leaderboardModal = document.getElementById("leaderboard-modal");
   const leaderboardList = document.getElementById("leaderboard-list");
   const closeBtn = document.querySelector(".close");
-
   // Game variables initialization
   let currentTurn = 0;
   let symbols = [];
   let winners = [];
   let countdownTimeout;
   let countdownInterval;
+  const initialTime = 30; // 30 seconds
   let currentTime = initialTime;
-  const initialTime = 30;
-
   // Event listeners for leaderboard modal
   leaderboardBtn.addEventListener("click", showLeaderboard);
   closeBtn.addEventListener("click", function () {
     leaderboardModal.style.display = "none";
   });
-  
   // Update symbol dropdown when player count changes
   playerNumberSelection.addEventListener("change", (event) => {
     const numberOfPlayers = parseInt(event.target.value);
@@ -47,13 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
       easyOption.disabled = false;
     }
   });
-
   /**
    * Populate the symbols dropdown based on number of players
-   * @param {number} numberOfPlayers 
+   * @param {number} numberOfPlayers
    */
   function populateSymbolSelection(numberOfPlayers) {
-    symbolSelection.innerHTML = "";// Clear previous selections
+    symbolSelection.innerHTML = ""; // Clear previous selections
 
     for (let i = 0; i < numberOfPlayers; i++) {
       const symbolDiv = document.createElement("div");
@@ -79,8 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
   startGameButton.addEventListener("click", () => {
     startGameNavbar();
     updateMessage();
-
-    // Fetch user selections for game parameters
+    // Gather selections
     const numberOfPlayers = parseInt(playerNumberSelection.value);
     symbols = Array.from(symbolSelection.querySelectorAll("select")).map(
       (select) => select.value
@@ -90,15 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Optionally: Hide launcher and show game area
     document.getElementById("launcher").style.display = "none";
     gameArea.style.display = "grid";
-
-    // Start a new game based on user selections
+    // Start the game
     startNewGame(numberOfPlayers, boardSize);
   });
-
   /**
    * Initial Game
-   * @param {number} numberOfPlayers 
-   * @param {number} boardSize 
+   * @param {number} numberOfPlayers
+   * @param {number} boardSize
    */
   function startNewGame(numberOfPlayers, boardSize) {
     gameArea.innerHTML = ""; // Clear the previous game board
@@ -120,10 +113,9 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
     }
 
-     // Set up the grid size for the game board
+    // Set up the grid size for the game board
     gameArea.style.gridTemplateRows = `repeat(${boardDimensions}, 1fr)`;
     gameArea.style.gridTemplateColumns = `repeat(${boardDimensions}, 1fr)`;
-
     // Create game cells
     for (let i = 0; i < boardDimensions * boardDimensions; i++) {
       let cell = document.createElement("div");
@@ -132,12 +124,11 @@ document.addEventListener("DOMContentLoaded", function () {
       gameArea.appendChild(cell);
     }
   }
-
   /**
    * Handle game logic when a cell is clicked
-   * @param {click} event 
-   * @param {data} providedCell 
-   * @returns 
+   * @param {click} event
+   * @param {data} providedCell
+   * @returns
    */
   function handleCellClick(event, providedCell = null) {
     const cell = providedCell || event.target;
@@ -166,10 +157,9 @@ document.addEventListener("DOMContentLoaded", function () {
     currentTurn = (currentTurn + 1) % symbols.length;
     startTimer();
 
-    // Display the current player's turn
+    // Update message area with current player's turn
     updateMessage();
   }
-
   /**
    * // Check if any player has met the winning conditions
    * @returns boolean Win condition Check
@@ -221,13 +211,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     return false;
   }
-
   /**
-   * Check Row 
-   * @param {number} cells 
-   * @param {number} row 
-   * @param {number} boardDimensions 
-   * @param {boolean} winCondition 
+   * Check Row
+   * @param {number} cells
+   * @param {number} row
+   * @param {number} boardDimensions
+   * @param {boolean} winCondition
    * @returns boolean
    */
   function checkRow(cells, row, boardDimensions, winCondition) {
@@ -249,14 +238,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return false;
   }
-
   /**
-   * Check Horizonal condition 
-   * @param {object} cells 
-   * @param {number} col 
-   * @param {number} boardDimensions 
-   * @param {boolean} winCondition 
-   * @returns boolean 
+   * Check Horizonal condition
+   * @param {object} cells
+   * @param {number} col
+   * @param {number} boardDimensions
+   * @param {boolean} winCondition
+   * @returns boolean
    */
   function checkColumn(cells, col, boardDimensions, winCondition) {
     let consecutive = 0;
@@ -278,16 +266,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return false;
   }
-
   /**
    * Check all diagonal
-   * @param {number} cells 
-   * @param {number} boardDimensions 
-   * @param {boolean} winCondition 
-   * @param {number} startRow 
-   * @param {number} startCol 
-   * @param {boolean} isMainDiagonal 
-   * @returns 
+   * @param {number} cells
+   * @param {number} boardDimensions
+   * @param {boolean} winCondition
+   * @param {number} startRow
+   * @param {number} startCol
+   * @param {boolean} isMainDiagonal
+   * @returns
    */
   function checkDiagonal(
     cells,
@@ -326,9 +313,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /**
    * Check select action ,if it meets norms
-   * @param {object} cell 
-   * @param {number} boardDimensions 
-   * @returns 
+   * @param {object} cell
+   * @param {number} boardDimensions
+   * @returns
    */
   function isValid(cell, boardDimensions) {
     // Get the col clicked
@@ -349,7 +336,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // If full, return false
     return false;
   }
-
   /**
    * Control Navbar
    */
@@ -357,7 +343,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.getElementById("navbar");
     // Remove Navbar
     navbar.innerHTML = "";
-
     // Regenerate navbar
     const timerElem = document.createElement("div");
     timerElem.id = "timer";
@@ -380,7 +365,6 @@ document.addEventListener("DOMContentLoaded", function () {
     navbar.appendChild(btnElem);
     // Call timer;
     startTimer();
-
     // Add Listener to Pause
     let isPaused = false;
     let pauseTimeout;
@@ -395,11 +379,9 @@ document.addEventListener("DOMContentLoaded", function () {
         startTimer(); // Restart timer
       }
     });
-
     // End game Listener
     endElem.addEventListener("click", resetGame);
   }
-
   /**
    * Set timer for each turn
    */
@@ -414,7 +396,7 @@ document.addEventListener("DOMContentLoaded", function () {
     countdownTimeout = setTimeout(autoMove, initialTime * 1000);
 
     // Update timer in the screen
-    const timerElement = document.getElementById("timer"); // 假设你的计时器元素有ID为'timer'
+    const timerElement = document.getElementById("timer");
 
     // Update timer info
     countdownInterval = setInterval(() => {
@@ -426,9 +408,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, 1000);
   }
-
   /**
-   * Reset Game, cose board and open launcher modal 
+   * Reset Game, cose board and open launcher modal
    */
   function resetGame() {
     messageDiv.innerHTML = "";
@@ -452,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /**
-   * automatically select a valid cell when 30 s time out and one player select
+   * Automatically select a valid cell when 30 s time out and one player select
    * @returns action
    */
   function autoMove() {
@@ -460,7 +441,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const boardDimensions = Math.sqrt(cells.length);
     let availableColumns = [];
 
-    // Find out all available cells
+    // Find out all available col
     for (let col = 0; col < boardDimensions; col++) {
       if (isColumnAvailable(cells, col, boardDimensions)) {
         availableColumns.push(col);
@@ -472,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Random select
+    // Random select one col
     const chosenColumn =
       availableColumns[Math.floor(Math.random() * availableColumns.length)];
 
@@ -485,13 +466,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
-
   /**
    * Check chells' availability
-   * @param {data} cells 
-   * @param {number} col 
-   * @param {number} boardDimensions 
-   * @returns 
+   * @param {data} cells
+   * @param {number} col
+   * @param {number} boardDimensions
+   * @returns
    */
   function isColumnAvailable(cells, col, boardDimensions) {
     for (let row = 0; row < boardDimensions; row++) {
@@ -525,9 +505,8 @@ document.addEventListener("DOMContentLoaded", function () {
       winners.shift();
     }
   }
-
   /**
-   * Create and show Leader Table 
+   * Create and show Leader Table
    */
   function showLeaderboard() {
     // Clean previous form

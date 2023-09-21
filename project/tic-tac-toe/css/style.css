@@ -1,10 +1,8 @@
-/* Universal Setting */
 *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -21,7 +19,6 @@ main{
   position: relative;
 }
 
-/* Navbar */
 #navbar {
   width: 100%;
   height:40px;
@@ -32,6 +29,12 @@ main{
   justify-content: space-between;
   align-items: center;
   position: relative;
+}
+
+#message {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 20px 0;
 }
 
 #logo {
@@ -50,14 +53,7 @@ main{
   left: 50%;
   transform: translateX(-50%);
 }
-
-/* Message Section */
-#message {
-  text-align: center;
-  font-size: 1.5em;
-  margin: 20px 0;
-}
-
+/* 隐藏模态框 */
 .modal {
   display: none;
   position: fixed;
@@ -87,16 +83,18 @@ main{
   cursor: pointer;
 }
 
-/* Launcher modal */
+
 #launcher {
+  position: relative;
   background-color: #e5e5e5;
+  border: 2px solid #bfbfbf;
+  border-radius: 10px;
   width: 300px;
   margin: 50px auto;
   padding: 20px;
-  border: 2px solid #bfbfbf;
-  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
   text-align: center;
-  position: relative;
 }
 
 #player-number-selection,
@@ -112,9 +110,10 @@ label {
 
 #btn{
   display: flex;
-  justify-content: center; 
+  justify-content: center; /* 按钮之间和容器边界之间都有空间 */
   align-items: center;
-  width: 100%; 
+  flex-direction: row; /* 这实际上是默认值，可以省略 */
+  width: 100%; /* 根据需要可以调整，确保它足够宽以容纳所有的按钮 */
 }
 
 button {
@@ -129,11 +128,11 @@ button {
   cursor: pointer;
 }
 
+
 button:hover {
   background-color: #555;
 }
 
-/* Game Board */
 #game-area {
   display: none; /* Initially hidden */
   position: relative;
@@ -150,9 +149,9 @@ button:hover {
 .chess-cell {
   background-color: white;
   border: 1px solid #BFBFBF;
-  display: flex;            
-  justify-content: center;  
-  align-items: center;      
+  display: flex;            /* 使用flexbox来居中内容 */
+  justify-content: center;  /* 水平居中 */
+  align-items: center;      /* 垂直居中 */
   font-weight: 900;
   font-size: 4vmin;
 }
@@ -161,7 +160,7 @@ button:hover {
   margin-bottom: 5px;
 }
 
-/* Player Color */
+/* 如果你想为不同玩家的符号设置不同的颜色，你可以添加以下样式 */
 .player-0 {
   color: red;
 }
@@ -174,7 +173,6 @@ button:hover {
   color:green;
 }
 
-/* Footer */
 footer {
   display: flex;
   justify-content: center;

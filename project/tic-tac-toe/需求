@@ -1,0 +1,72 @@
+帮我重构javascripts。
+我需要模块化。
+加载逻辑如下：
+*页面加载：
+1. scripts 生成 navbar和launcher modal。
+     - footer由html定义。
+1.1 调用navbar(launcher版）函数，navbar包括元素logo和game name
+1.2 调用launcher初始化函数，模块包括：
+title，玩家人数选择，玩家symbol选择，棋盘大小选择和两个按钮（Start Game和 排行榜）。
+launcher模块内的元素有一定的逻辑关系，关系如下：
+ 1.2.1 title是标题
+ 1.2.2 Player Number选择 2人或3人的radio，它必须先选，它的数据决定了symbol和board size的选项。
+ 1.2.3 Symbol 当人数为2时提供两个option，人数为3时提供3个option。
+ 1.2.3.1逻辑同下文代码
+ 1.2.3.2 按选择symbol顺序赋予玩家1，玩家2，玩家3 相应的symbol。并以不同颜色表现出来
+ 1.2.4 Board modal 提供游戏棋盘大小，提供三个选择：easy, middle, hard。
+ 1.2.4.1 
+ 1.2.4.1.1 easy 对应的是4*4棋盘；
+ 1.2.4.1.2 middle 对应的是7*7棋盘；
+ 1.2.4.1.3 hard 对应的是10*10棋盘
+ 1.2.4.2 
+ 1.2.4.2.1 人数为2时，可以选择三种难度；
+ 1.2.4.2.2人数为3时，只能选择middle和hard。而easy的选项变成disabled。
+ 1.2.5 start game 按钮，增加监听器，点击。 当点击时，实施以下行为：
+ 1.2.5.1 创建新navbar
+ 1.2.5.1.1清除navbar（launcher版本），
+ 1.2.5.1.2 用scripts重新生成游戏时的navbar，包含以下元素：timer, pause, end game。各元素逻辑同下文代码。
+ 1.2.5.1.2.1 timer模块的内容由starttimer()更新；
+ 1.2.5.1.2.2 pause添加click监听器，调用函数，函数包括以下内容：
+ 1.2.5.1.2.2.1 暂停timer,即clear timerinverval 和timerout
+ 1.2.5.1.2.2.2 按钮文字变成resume
+ 1.2.5.1.2.2.3 resume按钮添加点击监听器，调用starttimer()函数。或你可以采用更好的方法。
+ 1.2.5.1.2.3 给end gamed按钮添加click监听器， 调用reset()函数。
+ 1.2.5.1.2.3.1 reset()函数将做以下事情
+ 1.2.5.1.2.3.1.1 移除 navbar的游戏版，即timer,pause,end元素
+ 1.2.5.1.2.3.1.2 移除棋盘。 
+ 1.2.5.1.2.3.1.3 调用launcher初始化函数。
+ 1.2.5.2 收集上述信息，即，player number，symbol，board size。
+ 1.2.5.3 根据这些信息调用棋盘初始化函数，用scripts创建棋盘（可以参考逻辑，但需要重构原代码，下文代码中用硬代码预设棋盘）。
+ 1.2.5.3.1 棋盘game area有以下要求
+ 1.2.5.3.1.1 外形为正方形，用75vw定义宽度和高度，但需要计算保持比例，因为无论屏幕宽度缩小还是高度缩小都需要保持正方形。
+ 1.2.5.3.1.2 fixed居中在屏幕中间。
+ 1.2.5.3.1.3 棋盘内的cells根据board size 的数据设定。
+ 1.2.5.3.1.3.1 cells作为一个整体，应该上下左右都与game area保持相同边距。
+ 1.2.5.3.1.3.2 cells的宽和高单位用vw，但需要以board的参数为基准。保证无论屏幕如何变化，cells 都保持n * n的形式在棋盘内
+1.2.5.3.2  棋盘需要加载游戏玩法核心函数和监听器，
+1.2.5.3.2.1 添加cells监听器。事件为click，调用placeSymbol()函数，
+1.2.5.3.2.1.1 placeSymbol()内部调用isvalid()函数，
+1.2.5.3.2.1.1.1 如果isValid() = false， 则直接返回。不做任何操作。
+1.2.5.3.2.1.1.2 如果isvalid() =true,实施以下行为：
+1.2.5.3.2.1.1.2.1标记该cell 为selected，并记录cell的行列index信息。
+1.2.5.3.2.1.1.2.2 调用玩家轮次函数.
+1.2.5.3.2.1.1.2.2.1 轮次函数包括以下内容：
+1.2.5.3.2.1.1.2.2.1.1 调用checkwincondition()函数检查是否游戏结束或获胜。
+1.2.5.3.2.1.1.2.2.1.1.1 checkwincondition()不满足条件则跳过，continue。
+1.2.5.3.2.1.1.2.2.1.1.2 checkwincondition()满足条件，则返回相应结果，并记录获胜玩家。参考源代码。
+1.2.5.3.2.1.1.2.2.1.2 转移玩家轮次
+1.2.5.3.2.1.1.2.2.1.3 调用start timer()
+1.2.5.3.2.2 棋盘加载即刻调用start timer ()函数。做以下行为：
+1.2.5.3.2.2.1 start timer()函数需要clear timerout，
+1.2.5.3.2.2.2 start timer ()函数需要clear timerinverval
+1.2.5.3.2.2.3 重新建立新的timerout和interval,参考源代码。
+1.2.5.3.2.2.3.1 tiemerout结束时，调用automove()函数。
+1.2.5.3.2.2.3.2 利用interval方法，输出实时倒计时，并显示在timer模块。参考源代码
+1.2.5.3.2.3 棋盘需要加载automove()函数，作为timerout的函数；
+1.2.5.3.2.3.1 automove()需要调用cell信息函数，获取available cells信息
+1.2.5.3.2.3.2 automove()根据available cells信息，随机选一个,然后传递调用placeSymbol();
+1.2.5.3.2.4 棋盘需要加载cell信息函数，需要包括以下内容：
+1.2.5.3.2.4.1 实施更新available cells
+1.2.5.3.2.4.2 更新selected cells 
+1.2.6 给排行榜按钮添加click监听器，调用排行榜函数
+1.2.6.1 输出最近十名获胜玩家到排行榜modal。
