@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cosmic Calculator</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>Cosmic Calculator</h1>
+      <div id="calculator">
+        <form>
+          <p>How much was your bill?</p>
+          <p><input id="totalBill" type="text" placeholder="0.00" /> $</p>
+          <p>How was your service?</p>
+          <p>
+            <select id="service">
+              <option disabled selected value="0">-- Choose an Option --</option>
+              <option value="0.3">30% - Amazing</option>
+              <option value="0.2">20% - Great</option>
+              <option value="0.15">15% - Regualr</option>
+              <option value="0.1">10% - Not Great</option>
+              <option value="0.05">5% - Awful</option>
+            </select>
+          </p>
+          <p>How many people are sharing the bill?</p>
+          <input id="peopleCount" type="text" placeholder="# of People" /> people
+          <button type="button" id="calculate" onclick="tipCalculator()">Calculate!</button>
+        </form>
+      </div>
+      <!--calculator end-->
+      <div id="tipAndTotal">
+
+      </div>
+      <!--totalTip end--> 
+    </div>
+    <img id="imgSatisfaction" src="images/blank.png" alt="Satisfaction">
+    <!--container end-->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="js/calculator.js"></script>
+
+  </body>
+</html>
