@@ -1,0 +1,33 @@
+/**
+/**
+ * FILEPATH: /Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css/utils/mixins.css
+ * 
+ * This file contains CSS mixins that can be used throughout the project.
+ * Mixins are reusable blocks of code that can be included in other CSS rules.
+ * By using mixins, we can avoid repeating the same code over and over again.
+ */
+ @import 'variables.css';
+ 
+ @mixin button-style($bg-color, $hover-color, $text-color: white) {
+    background-color: $bg-color;
+    border: none;
+    border-radius: 8px;
+    color: $text-color;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+

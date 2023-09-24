@@ -1,0 +1,18 @@
+/**
+* 
+*/
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(var(--board-size, 3), 1fr); 
+    gap: 0.75rem; // 更新间距
+    padding: 1.5rem; // 在整个棋盘周围添加填充，使其离边缘有距离
+    width: 80vw;  
+    max-width: 600px; 
+
+    .cell {
+        width: 100%; 
+        padding-top: 100%;  
+        position: relative;
+    }
+}

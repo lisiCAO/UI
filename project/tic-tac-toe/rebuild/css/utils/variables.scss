@@ -1,0 +1,73 @@
+/**
+ * This file contains all the variables used throughout the project.
+ * These variables are used to maintain consistency and make it easier to update the project's styles.
+ */
+
+/* variables.css */
+:root {
+    /* Fonts */
+    --font-title: 'Press Start 2P', cursive;
+    --font-body: 'VT323', monospace;
+    /* Colors */
+    --bg-main: #FCE4EC;             /* 主背景颜色 */
+    --bg-secondary: #F8BBD0;        /* 辅助背景色 */
+    --text-main: #000000;           /* 主文本颜色 */
+    --text-primary: #333333;        /* 主要文本颜色 */
+    --text-secondary: #888888;      /* 次要文本颜色 */
+    --highlight: #FFD700;           /* 用于高亮、特殊元素、通知等 */
+    --btn-nav-bg: #FFC0CB;          /* 导航按钮背景色 */
+    --btn-nav-hover: #FFB6C1;       /* 导航按钮悬停颜色 */
+    --btn-modal-bg: #FF69B4;        /* 模态框按钮背景色 */
+    --btn-modal-hover: #FF1493;     /* 模态框按钮悬停颜色 */
+
+    /* Board */
+    --board-size: 3;  /* This defines the default size of the game board, can be overwritten in your JS logic */
+    /* ... others ... */
+}
+
+/* Day Mode - Pink Theme */
+.body-day {
+    --bg-main: #FFC0CB;             /* 主背景颜色 */
+    --bg-secondary: #FFB6C1;        /* 辅助背景色 */
+
+    /* text colors */
+    --text-main: var(--text-primary); /* 主文本颜色 */
+    --text-secondary: var(--text-secondary); /* 辅助文本颜色 */
+
+    /* button colors */
+    --btn-primary: #FF69B4;         /* 主要按钮颜色 */
+    --btn-secondary: #FF83FA;       /* 次要按钮颜色 */
+    --btn-nav-bg: #FFC0CB;          /* 导航按钮背景色 */
+    --btn-nav-hover: #FFB6C1;       /* 导航按钮悬停颜色 */
+    --btn-modal-bg: #FF69B4;        /* 模态框按钮背景色 */
+    --btn-modal-hover: #FF1493;     /* 模态框按钮悬停颜色 */
+
+    /* player colors */
+    --playerX: #E60073;             /* 玩家X的颜色 */
+    --playerO: #FF4500;             /* 玩家O的颜色 */
+}
+
+/* Night Mode - Dark Pink Theme */
+.body-night {
+    --bg-main: #8B008B;             /* 主背景颜色 */
+    --bg-secondary: #9400D3;        /* 辅助背景色 */
+
+    /* text colors */
+    --text-main: #FFFFFF;           /* 主文本颜色 */
+    --text-secondary: #DDA0DD;      /* 辅助文本颜色 */
+
+    /* button colors */
+    --btn-primary: #FF00FF;         /* 主要按钮颜色 */
+    --btn-secondary: #EE82EE;       /* 次要按钮颜色 */
+    --btn-nav-bg: #D02090;          /* 导航按钮背景色 */
+    --btn-nav-hover: #9932CC;       /* 导航按钮悬停颜色 */
+    --btn-modal-bg: #8B008B;        /* 模态框按钮背景色 */
+    --btn-modal-hover: #9400D3;     /* 模态框按钮悬停颜色 */
+
+    /* player colors */
+    --playerX: #FF1493;             /* 玩家X的颜色 */
+    --playerO: #FF6347;             /* 玩家O的颜色 */
+    --playerZ: #FFD700;             /* 玩家Z的颜色 */
+    
+}
+

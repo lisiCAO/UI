@@ -1,0 +1,46 @@
+/**
+    * @mixin button-style
+    * @param {string} $bgColor - button background color
+    * @param {string} $hoverColor - btn hover color
+    * @param {string} $color - btn text color
+    * @mixin button-style
+    */
+
+
+@import 'variables.css';
+@import 'mixins.css';
+
+/* Common Button Styles */
+button {
+    @include button-style(var(--btn-primary), var(--btn-secondary));
+    // specify other common styles for buttons, such as width, margin, etc.
+}
+
+/* Navigation Buttons */
+.nav-button {
+    @include button-style(var(--btn-nav-bg), var(--btn-nav-hover));
+    // specify other specific styles for navigation buttons, such as width, margin, etc.
+}
+
+/* Modal Buttons */
+.modal-button {
+    @include button-style(var(--btn-modal-bg), var(--btn-modal-hover));
+    // specify other specific styles for modal buttons, such as width, margin, etc.
+}
+
+/* Game Board Buttons */
+.game-board .cell button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--text-secondary);
+    text-align: center;
+    font-size: calc(3vw + 1rem); 
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--highlight);
+    }
+}

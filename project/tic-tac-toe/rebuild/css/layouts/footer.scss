@@ -1,0 +1,20 @@
+/**
+ * FILEPATH: /Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css/layouts/footer.css
+ * 
+ * This file contains the CSS styles for the footer layout of the Tic Tac Toe game.
+ * The footer layout includes the game's logo and any other relevant information or links.
+ */
+ @import 'variables.css';
+
+/* Footer */
+footer {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+

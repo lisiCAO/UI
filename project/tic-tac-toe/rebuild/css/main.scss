@@ -1,0 +1,59 @@
+/**
+    * Main CSS file for the project.
+    * This file imports all the other CSS files.
+    * This file is the one that is compiled into the final CSS file.
+    */
+
+/* Utilities */
+@import "utils/variables.scss";
+@import "utils/mixins.scss";
+
+/* Layouts */
+@import "layouts/header.scss";
+@import "layouts/footer.scss";
+@import "layouts/main-content.scss";
+@import "layouts/aside.scss";
+
+/* Components */
+@import "components/navbar.scss";
+@import "components/game-board.scss";
+@import "components/modals.scss";
+@import "components/buttons.scss";
+@import "components/avatars.scss";
+
+/* Universal styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    height: 100%;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    overflow-x: hidden; // prevent horizontal scrolling
+}
+/* Containner for the main and aside */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* 这意味着 aside 会占据总宽度的1/4，而 main 会占据3/4 */
+    gap: 1rem; /* 两者之间的间隔 */
+}
+
+/* Layout Styles */
+header, footer, main {
+    padding: 1rem;
+    margin: auto;
+  }
+
+/* Title Styles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+
