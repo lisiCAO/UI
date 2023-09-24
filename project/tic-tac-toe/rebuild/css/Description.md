@@ -7,17 +7,19 @@
             ...
     /css
         /components
-            navbar.css
-            game-board.css
-            modals.css
-            buttons.css
+            navbar.scss
+            game-board.scss
+            modals.scss
+            buttons.scss
         /layouts
-            header.css
-            footer.css
-            main-content.css
+            header.scss
+            footer.scss
+            main-content.scss
+            aside.scss
         /utils
-            variables.css
-            mixins.css
+            variables.scss
+            mixins.scss
+        main.scss
         main.css
     /js
         /modules

@@ -1,0 +1,254 @@
+@charset "UTF-8";
+/**
+    * Main CSS file for the project.
+    * This file imports all the other CSS files.
+    * This file is the one that is compiled into the final CSS file.
+    */
+/* Utilities */
+/* Mixins */
+/* Variables.css */
+:root {
+  /* Fonts */
+  --font-title: "Press Start 2P", cursive;
+  --font-body: "VT323", monospace;
+  /* Colors */
+  --bg-main: #FCE4EC; /* 主背景颜色 */
+  --bg-secondary: #F8BBD0; /* 辅助背景色 */
+  --text-main: #000000; /* 主文本颜色 */
+  --text-primary: #333333; /* 主要文本颜色 */
+  --text-secondary: #888888; /* 次要文本颜色 */
+  --highlight: #FFD700; /* 用于高亮、特殊元素、通知等 */
+  --btn-nav-bg: #FFC0CB; /* 导航按钮背景色 */
+  --btn-nav-hover: #FFB6C1; /* 导航按钮悬停颜色 */
+  --btn-modal-bg: #FF69B4; /* 模态框按钮背景色 */
+  --btn-modal-hover: #FF1493; /* 模态框按钮悬停颜色 */
+  /* Board */
+  --board-size: 3; /* This defines the default size of the game board, can be overwritten in your JS logic */
+  /* ... others ... */
+}
+
+/* Day Mode - Pink Theme */
+.body-day {
+  --bg-main: #FFC0CB; /* 主背景颜色 */
+  --bg-secondary: #FFB6C1; /* 辅助背景色 */
+  /* text colors */
+  --text-main: var(--text-primary); /* 主文本颜色 */
+  --text-secondary: var(--text-secondary); /* 辅助文本颜色 */
+  /* button colors */
+  --btn-primary: #FF69B4; /* 主要按钮颜色 */
+  --btn-secondary: #FF83FA; /* 次要按钮颜色 */
+  --btn-nav-bg: #FFC0CB; /* 导航按钮背景色 */
+  --btn-nav-hover: #FFB6C1; /* 导航按钮悬停颜色 */
+  --btn-modal-bg: #FF69B4; /* 模态框按钮背景色 */
+  --btn-modal-hover: #FF1493; /* 模态框按钮悬停颜色 */
+  /* player colors */
+  --playerX: #E60073; /* 玩家X的颜色 */
+  --playerO: #FF4500; /* 玩家O的颜色 */
+}
+
+/* Night Mode - Dark Pink Theme */
+.body-night {
+  --bg-main: #8B008B; /* 主背景颜色 */
+  --bg-secondary: #9400D3; /* 辅助背景色 */
+  /* text colors */
+  --text-main: #FFFFFF; /* 主文本颜色 */
+  --text-secondary: #DDA0DD; /* 辅助文本颜色 */
+  /* button colors */
+  --btn-primary: #FF00FF; /* 主要按钮颜色 */
+  --btn-secondary: #EE82EE; /* 次要按钮颜色 */
+  --btn-nav-bg: #D02090; /* 导航按钮背景色 */
+  --btn-nav-hover: #9932CC; /* 导航按钮悬停颜色 */
+  --btn-modal-bg: #8B008B; /* 模态框按钮背景色 */
+  --btn-modal-hover: #9400D3; /* 模态框按钮悬停颜色 */
+  /* player colors */
+  --playerX: #FF1493; /* 玩家X的颜色 */
+  --playerO: #FF6347; /* 玩家O的颜色 */
+  --playerZ: #FFD700; /* 玩家Z的颜色 */
+}
+
+/* Universal styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  height: 100%;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Containner for the main and aside */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* 这意味着 aside 会占据总宽度的1/4，而 main 会占据3/4 */
+  gap: 1rem; /* 两者之间的间隔 */
+  height: 100vh; /* 使得两者都占据整个视口的高度 */
+}
+
+/* Layout Styles */
+header, footer, main, aside {
+  padding: 1rem;
+  margin: auto;
+}
+
+/* Title Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Layouts */
+/* Header Styles */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* END: Header Styles */
+/**
+ * FILEPATH: /Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css/layouts/footer.css
+ * 
+ * This file contains the CSS styles for the footer layout of the Tic Tac Toe game.
+ * The footer layout includes the game's logo and any other relevant information or links.
+ */
+/* Footer */
+footer {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/**
+ * FILEPATH: /Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css/layouts/main-content.css
+ * 
+ * This file contains the CSS code for the main content layout of the Tic Tac Toe game. It includes styles for the game board, 
+ * player information, and game status messages.
+ */
+/* Main Content */
+main {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/**
+ * This file contains the styles for the aside element in the tic-tac-toe game.
+ * The aside element is primarily used to display the avatars or animations of the two players.
+ */
+aside {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  display: block;
+  /* 根据需要添加其他样式 */
+}
+
+/* Components */
+.navbar {
+  background-color: var(--bg-secondary);
+  padding: 10px 20px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 游戏棋盘 */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(var(--board-size, 3), 1fr);
+  gap: 0.75rem;
+  padding: 1.5rem;
+  width: 80vw;
+  max-width: 600px;
+}
+.game-board .cell {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+/* Modals */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+.modal.launcher-modal {
+  width: 80vw;
+  max-width: 500px;
+}
+.modal.game-rule-modal {
+  width: 90vw;
+  max-width: 600px;
+  height: 70vh;
+  overflow-y: auto;
+}
+
+/* Game Board Buttons */
+.game-board .cell button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--text-secondary);
+  text-align: center;
+  font-size: calc(3vw + 1rem);
+  cursor: pointer;
+}
+.game-board .cell button:hover {
+  background-color: var(--highlight);
+}
+
+/* Navigation Buttons */
+.nav-button {
+  background-color: var(--btn-nav-bg);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.nav-button:hover {
+  background-color: var(--btn-nav-hover);
+}
+
+/* Modal Buttons */
+.modal-button {
+  background-color: var(--btn-modal-bg);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.modal-button:hover {
+  background-color: var(--btn-modal-hover);
+}/*# sourceMappingURL=main.css.map */

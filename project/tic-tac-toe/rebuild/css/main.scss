@@ -5,21 +5,8 @@
     */
 
 /* Utilities */
-@import "utils/variables.scss";
-@import "utils/mixins.scss";
-
-/* Layouts */
-@import "layouts/header.scss";
-@import "layouts/footer.scss";
-@import "layouts/main-content.scss";
-@import "layouts/aside.scss";
-
-/* Components */
-@import "components/navbar.scss";
-@import "components/game-board.scss";
-@import "components/modals.scss";
-@import "components/buttons.scss";
-@import "components/avatars.scss";
+@import "utils/mixins";
+@import "utils/variables";
 
 /* Universal styles */
 * {
@@ -36,15 +23,17 @@ body {
     color: var(--text-main);
     overflow-x: hidden; // prevent horizontal scrolling
 }
+
 /* Containner for the main and aside */
 .container {
     display: grid;
     grid-template-columns: 1fr 3fr; /* 这意味着 aside 会占据总宽度的1/4，而 main 会占据3/4 */
     gap: 1rem; /* 两者之间的间隔 */
+    height: 100vh; /* 使得两者都占据整个视口的高度 */
 }
 
 /* Layout Styles */
-header, footer, main {
+header, footer, main, aside {
     padding: 1rem;
     margin: auto;
   }
@@ -56,4 +45,16 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
 }
 
+/* Layouts */
+@import "layouts/header.scss";
+@import "layouts/footer.scss";
+@import "layouts/main-content.scss";
+@import "layouts/aside.scss";
+
+/* Components */
+@import "components/navbar.scss";
+@import "components/game-board.scss";
+@import "components/modals.scss";
+@import "components/buttons.scss";
+@import "components/avatars.scss";
 

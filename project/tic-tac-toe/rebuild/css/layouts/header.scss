@@ -1,15 +1,5 @@
-/**
- * Header Styles
- * @file header.css
- * @module rebuild/css/layouts/header.css
- * @version 1.0.0
- *
- * @category Layouts
- * FILEPATH: /path/to/your/file.css */
 
- @import 'variables.css';
- 
-/* BEGIN: Header Styles */
+/* Header Styles */
 header {
     position: sticky;
     top: 0;
@@ -17,7 +7,7 @@ header {
     background-color: var(--bg-secondary);
     color: var(--text-secondary);
     text-align: center;
-    padding: 1rem 0;
+    padding: 1rem 0; 
 }
 /* END: Header Styles */
   
