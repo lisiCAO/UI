@@ -22,3 +22,16 @@ import * as GameBoard from "./components/game-board.js";
 import * as Modals from "./components/modals.js";
 
 // TODO: Implement the game's start and reset mechanisms here
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM loaded");
+
+    /* Initial Launch Page */
+    Navbar.renderNavbar();                  // initial navbar
+    Modals.renderLaunchModal();             // initial launch modal;
+    Modals.renderGameRulesModal();          // initial game rules modal
+});
+
+
+
+

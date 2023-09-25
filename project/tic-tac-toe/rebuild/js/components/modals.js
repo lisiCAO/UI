@@ -23,19 +23,29 @@ function renderGameRulesModal(){
     // render game rules modal
 }
 
-/**
- * 
- * @param {data} player 
- */
-function showWinner(player){
-    // display winner
-} 
 
-function showDraw(){
-    // display draw
+/**
+ * 显示模态窗口并传递特定消息。
+ * @param {string} message - 要显示的消息
+ */
+
+function showmodal(message){
+    // show modal
 }
 
+/**
+ * 隐藏模态窗口。
+ */
 function hideModal(){
     // hide modal
+}
+
+/**
+ * 
+ * @param {data} playerXScore 玩家X的有效操作
+ * @param {data} playerOScore 玩家O的有效操作
+ */
+function updateStatusBoard(playerXScore, playerOScore){
+    // 更新玩家的有效操作面板
 }
 

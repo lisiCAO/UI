@@ -8,3 +8,16 @@
  */
 
 // TODO: Add logic to update scores dynamically based on game progress
+
+export function setupNavbar(){
+    // TODO: Add event listeners for user interactions within setupNavbar
+};
+
+function renderLaunchNavbar(){
+    // TODO: Render the initial navbar
+};
+
+function renderGameNavbar(){
+    // TODO: Render the game navbar, including scores and player names
+}
+

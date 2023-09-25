@@ -6,11 +6,31 @@
  * - Add animations for winning sequences
  * - Implement a responsive design for different screen sizes
  */
+export function setupBoard(){
+    // TODO: Add event listeners for user interactions within setupBoard
+}
 
-export function renderBoard(){
+/**
+ * 根据当前的棋盘状态渲染UI。
+ * @param {number} boardState boardState: 一个2D数组，表示棋盘的当前状态
+ */
+function renderBoard(boardState){
     // TODO: Enhance renderBoard to accommodate dynamic board sizes
+
 } 
 
-export function resetBoardUI(){
+/**
+ * 高亮显示赢得游戏的连线
+ * @param {data} winningCells 一个包含获胜单元格坐标的数组
+ */
+function highlightWinningCells(winningCells){
+
+}
+
+/**
+ * 重置棋盘UI到初始状态。
+ * 参数: None
+ */
+function resetBoardUI(){
     // TODO: Add event listeners for user interactions within resetBoardUI
 }
