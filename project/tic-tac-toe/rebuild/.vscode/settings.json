@@ -1,8 +1,9 @@
 {"liveSassCompile.settings.formats": [
+
     {
         "format": "expanded",
         "extensionName": ".css",
-        "savePath": "/Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css"
+        "savePath": "/css"
     }
 ],
 "liveSassCompile.settings.excludeList": []

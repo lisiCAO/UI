@@ -1,13 +1,13 @@
 
 /* Header Styles */
 header {
-    position: sticky;
-    top: 0;
-    z-index: 100;  // ensure header is above other content
+    grid-area: header;
+    width: 100%;
+    height: 70px;
     background-color: var(--bg-secondary);
     color: var(--text-secondary);
     text-align: center;
-    padding: 1rem 0; 
+    padding: 1rem 0;
 }
 /* END: Header Styles */
   

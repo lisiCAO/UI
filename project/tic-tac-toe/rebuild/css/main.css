@@ -76,18 +76,14 @@
 body {
   font-family: var(--font-body);
   font-size: 16px;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* 侧边栏占1份，主内容占3份 */
+  grid-template-rows: auto 1fr auto; /* 头部和底部高度为内容高度，主内容填充剩余空间 */
+  grid-template-areas: "header header" "aside main" "footer footer";
+  height: 100vh; /* 视口的100%高度 */
   background-color: var(--bg-main);
   color: var(--text-main);
   overflow-x: hidden;
-}
-
-/* Containner for the main and aside */
-.container {
-  display: grid;
-  grid-template-columns: 1fr 3fr; /* 这意味着 aside 会占据总宽度的1/4，而 main 会占据3/4 */
-  gap: 1rem; /* 两者之间的间隔 */
-  height: 100vh; /* 使得两者都占据整个视口的高度 */
 }
 
 /* Layout Styles */
@@ -106,9 +102,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Layouts */
 /* Header Styles */
 header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  grid-area: header;
+  width: 100vw;
+  height: 70px;
   background-color: var(--bg-secondary);
   color: var(--text-secondary);
   text-align: center;
@@ -116,14 +112,9 @@ header {
 }
 
 /* END: Header Styles */
-/**
- * FILEPATH: /Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css/layouts/footer.css
- * 
- * This file contains the CSS styles for the footer layout of the Tic Tac Toe game.
- * The footer layout includes the game's logo and any other relevant information or links.
- */
 /* Footer */
 footer {
+  grid-area: footer;
   background-color: var(--bg-secondary);
   color: var(--text-secondary);
   text-align: center;
@@ -133,25 +124,17 @@ footer {
   width: 100%;
 }
 
-/**
- * FILEPATH: /Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css/layouts/main-content.css
- * 
- * This file contains the CSS code for the main content layout of the Tic Tac Toe game. It includes styles for the game board, 
- * player information, and game status messages.
- */
 /* Main Content */
 main {
+  grid-area: main;
   display: block;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
-/**
- * This file contains the styles for the aside element in the tic-tac-toe game.
- * The aside element is primarily used to display the avatars or animations of the two players.
- */
+/* 侧边栏 */
 aside {
+  grid-area: aside;
   background-color: var(--bg-secondary);
   color: var(--text-secondary);
   display: block;
@@ -159,6 +142,7 @@ aside {
 }
 
 /* Components */
+/* Navbar */
 .navbar {
   background-color: var(--bg-secondary);
   padding: 10px 20px;

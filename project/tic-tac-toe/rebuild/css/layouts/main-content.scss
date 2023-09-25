@@ -1,16 +1,8 @@
-/**
- * FILEPATH: /Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css/layouts/main-content.css
- * 
- * This file contains the CSS code for the main content layout of the Tic Tac Toe game. It includes styles for the game board, 
- * player information, and game status messages.
- */
-
 /* Main Content */
-
 main {
+  grid-area: main;
   display: block;  // some browsers treat main as inline, so we ensure it's block level
-  width: 100%;
-  max-width: 1200px; // example value, adjust as needed
+  width: 100%; // ensure the main content takes up the full width of the viewport
   margin: 0 auto; // center the content if the viewport is wider than max-width
 }
   

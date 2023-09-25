@@ -11,19 +11,31 @@
 
 // TODO: Add a close or dismiss button logic for modals
 
+export function setupModals(){
+    // TODO: Add event listeners for user interactions within setupModals
+}
+
+function renderLaunchModal(){
+    // render launch modal
+}
+
+function renderGameRulesModal(){
+    // render game rules modal
+}
+
 /**
  * 
  * @param {data} player 
  */
-export function showWinner(player){
+function showWinner(player){
     // display winner
 } 
 
-export function showDraw(){
+function showDraw(){
     // display draw
 }
 
-export function hideModal(){
+function hideModal(){
     // hide modal
 }
 

@@ -1,13 +1,9 @@
-/**
- * This file contains the styles for the aside element in the tic-tac-toe game.
- * The aside element is primarily used to display the avatars or animations of the two players.
- */
-// FILEPATH: /Users/caolisi/Desktop/FSD-UI/project/tic-tac-toe/rebuild/css/layouts/aside.scss
-
-
+/* 侧边栏 */
 aside {
+    grid-area: aside;
     background-color: var(--bg-secondary);
     color: var(--text-secondary);
     display: block;
     /* 根据需要添加其他样式 */
+
   }
