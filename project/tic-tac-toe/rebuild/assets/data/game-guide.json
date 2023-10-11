@@ -1,0 +1,66 @@
+{
+    "title": "Game Rules Documentation",
+    "date": "2023-09-21",
+    "sections": [
+      {
+        "title": "Overview",
+        "content": "This game offers a strategy-based board game experience where players take turns placing their respective symbols on the board. The objective is to achieve a specific configuration of symbols before the opponent does."
+      },
+      {
+        "title": "Game Setup",
+        "subsections": [
+          {
+            "title": "Player Selection",
+            "content": "Players can choose a 2-player or a 3-player game."
+          },
+          {
+            "title": "Symbol Selection",
+            "content": "Each player selects a distinct symbol. Available symbols: X, O, Z, and W. The number of available symbols will depend on the number of players."
+          },
+          {
+            "title": "Board Selection",
+            "content": "Players select a game board size: Easy (4x4 grid), Middle (7x7 grid), Hard (10x10 grid). Note: In a 3-player game, the \"Easy\" size is disabled."
+          }
+        ]
+      },
+      {
+        "title": "Gameplay",
+        "subsections": [
+          {
+            "title": "Turn Sequence",
+            "content": "Players take turns placing their symbol on the board. The order is determined by the sequence of symbol selection."
+          },
+          {
+            "title": "Placing Symbols",
+            "content": "A player can only place their symbol in a valid cell. A cell is considered valid if it's empty and directly above it (if any) is occupied."
+          },
+          {
+            "title": "Winning Condition",
+            "content": "A player wins when they have their symbols in a specific configuration: 3 in a row horizontally, vertically, or diagonally."
+          },
+          {
+            "title": "Time Limit",
+            "content": "Each player has a limited time to make their move. If a player doesn't make a move within the time limit, an automatic move is made for them."
+          },
+          {
+            "title": "Pause & End Game",
+            "content": "Players have the option to pause the game timer. Players can also choose to end the game prematurely."
+          }
+        ]
+      },
+      {
+        "title": "End of Game",
+        "subsections": [
+          {
+            "title": "Victory",
+            "content": "The game ends when one player achieves the winning condition. That player is then declared the winner."
+          },
+          {
+            "title": "Leaderboard",
+            "content": "The game records the most recent winners. Up to ten winners can be displayed in the leaderboard."
+          }
+        ]
+      }
+    ]
+  }
+  

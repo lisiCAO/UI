@@ -32,12 +32,61 @@ const utilities = (() => {
     return BOARD_SIZE;
     }
     
+  // 所有玩家数据
+  const allPlayers = [
+    {
+      id: 1,
+      username: 'Arya Cao',
+      wins: 0,
+      losses: 0,
+      draws: 0,
+    },
+    {
+      id: 2,
+      username: 'Qi Luo',
+      wins: 0,
+      losses: 0,
+      draws: 0,
+    },
+    {
+      id: 3,
+      username: 'Lisi Cao',
+      wins: 0,
+      losses: 0,
+      draws: 0,
+    },
+  ];
   
     // 代表玩家数据
-    const players = [
-      { id: 1, symbol: 'X', isCurrent: true },
-      { id: 2, symbol: 'O', isCurrent: false }
-    ];
+    const players = [];
+
+    function initializeGameData(selectedPlayerIds, selectedSymbols, boardSize) {
+        // 重置玩家数据
+        players.length = 0;
+      
+        // 重置棋盘
+        setBoardSize(boardSize);
+        
+        // 重置游戏状态
+        winner = null;
+        draw = false;
+      
+        // 重置所有玩家数据
+        players.forEach(player => {
+          player.isCurrent = false;
+          player.symbol = null;
+        });
+      
+        // 为每个玩家创建一个新的对象
+        selectedPlayerIds.forEach((playerId, index) => {
+          const player = Object.assign({}, allPlayers.find(player => player.id === playerId));
+          player.isCurrent = index === 0;
+          player.symbol = selectedSymbols[index];
+          players.push(player);
+        });
+        
+      };
+
   
     // 基础功能
   
@@ -45,7 +94,15 @@ const utilities = (() => {
      * 切换当前玩家。
      */
     function toggleCurrentPlayer() {
-      players.forEach(player => player.isCurrent = !player.isCurrent);
+      const currentPlayer = players.find(player => player.isCurrent);
+      const currentIndex = players.indexOf(currentPlayer);
+      
+      // 设置当前玩家的 isCurrent 为 false
+      players[currentIndex].isCurrent = false;
+      
+      // 设置下一个玩家的 isCurrent 为 true
+      const nextIndex = (currentIndex + 1) % players.length;
+      players[nextIndex].isCurrent = true;
     }
   
     /**
@@ -63,9 +120,20 @@ const utilities = (() => {
      * @returns {Object|null} 获胜的玩家或null（如果没有玩家获胜）
      */
     function checkWinner() {
-      // TODO: 根据您的游戏逻辑来实现
-      return null; // 这里只是一个示例，需要您根据游戏逻辑来填写
-    }
+    // 遍历棋盘以查找获胜条件
+    // ...（实现这一部分逻辑）
+  
+    // 假设你找到了满足获胜条件的 cells，以及获胜的玩家的 symbol
+    const winningCells = []; // 获胜的 cells
+    const winningSymbol = 'X'; // 获胜者的 symbol
+
+    // 找到获胜的玩家
+    const winner = players.find(player => player.symbol === winningSymbol);
+
+    return {
+      player: winner,
+      cells: winningCells
+    }};  
   
     // 扩展功能
   
@@ -74,11 +142,20 @@ const utilities = (() => {
      * @returns {Object} 包含操作的玩家和选择的对象
      */
     function checkTwoInARow() {
-      // TODO: 实现逻辑
-      return {
-        player: null,
-        choice: null
-      };
+    // 遍历棋盘以查找 2 连的情况
+    // ...（实现这一部分逻辑）
+  
+    // 假设你找到了一组符合条件的 cells，以及相关的玩家的 symbol
+    const cells = []; // 2 连的 cells
+    const symbol = 'X'; // 相关的玩家的 symbol
+
+    // 找到相关的玩家
+    const player = players.find(player => player.symbol === symbol);
+
+    return {
+      player: player,
+      cells: cells
+    };
     }
   
     /**
@@ -86,24 +163,52 @@ const utilities = (() => {
      * @returns {Object} 包含操作的玩家和选择的对象
      */
     function checkBlockThreeInARow() {
-      // TODO: 实现逻辑
-      return {
-        player: null,
-        choice: null
-      };
-    }
+      // 遍历棋盘以查找 2 连的情况
+      // ...（实现这一部分逻辑）
+    
+      // 假设你找到了一组符合条件的 cells，以及相关的对方玩家的 symbol
+      const cells = []; // 2 连的 cells
+      const symbol = 'O'; // 相关的对方玩家的 symbol
   
-    return {
-      board,
-      players,
-      setBoardSize,
-      getboardSize,
-      toggleCurrentPlayer,
-      getCurrentPlayer,
-      checkWinner,
-      checkTwoInARow,
-      checkBlockThreeInARow
-    };
+      // 找出需要被阻止的单个 cell（choice）
+      const choice = cells.find(cell => cell.value === '');
+      
+      // 找到相关的对方玩家
+      const opponent = players.find(player => player.symbol === symbol);
+  
+      return {
+        player: opponent,
+        choice: choice
+      };
+  }
+
+  const boardMethods = {
+    setBoardSize,
+    getboardSize,
+};
+
+const playerMethods = {
+    toggleCurrentPlayer,
+    getCurrentPlayer,
+};
+
+const gameLogicMethods = {
+    checkWinner,
+    checkTwoInARow,
+    checkBlockThreeInARow,
+};
+
+const gameDataInitialization = {
+    initializeGameData
+};
+  
+return {
+  board,
+  players,
+  ...boardMethods,
+  ...playerMethods,
+  ...gameLogicMethods,
+  ...gameDataInitialization
+};
   
   })();
-  

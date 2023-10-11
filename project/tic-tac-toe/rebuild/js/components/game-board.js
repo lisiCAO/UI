@@ -6,6 +6,7 @@
  * - Add animations for winning sequences
  * - Implement a responsive design for different screen sizes
  */
+
 export function setupBoard(){
     // TODO: Add event listeners for user interactions within setupBoard
 }
@@ -16,6 +17,7 @@ export function setupBoard(){
  */
 function renderBoard(boardState){
     // TODO: Enhance renderBoard to accommodate dynamic board sizes
+    
 
 } 
 
