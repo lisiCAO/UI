@@ -10,22 +10,67 @@
  */
 
 // TODO: Add a close or dismiss button logic for modals
+import { utilities } from "../modules/utilities.js";
 
-export function getModal(type){
-    // TODO: Add event listeners for user interactions within setupModals
-    if(type === 'launch'){
-        return renderLaunchModal;
-    }else if (type === 'game'){
-        return renderLeaderboardModal;
-    }else if(type === 'gameRules'){    
-        return renderGameRulesModal;
-    }
+/** 
+ * @description Returns an object with functions to show, hide, or render modals.
+ * @param {string} type - The type of modal to show, hide, or render.
+ * @returns {Object} An object with functions to show, hide, or render modals.
+ * @example
+ * const modals = getModals('launch');
+ * modals.show();
+ * modals.render();
+ * modals.hide();
+ */
+export function getModals(type) {
+    const api = {
+        show: function(optionalData) {
+            showModal(type, optionalData);
+        },
+        render: function(optionalData) {
+            switch (type) {
+                case 'launch':
+                    renderLaunchModal();
+                    break;
+                case 'game':
+                    renderLeaderboardModal();
+                    break;
+                case 'gameRules':
+                    renderGameRulesModal(optionalData);
+                    break;
+                default:
+                    console.log('Unknown modal type');
+            }
+        },
+        hide: function() {
+            hideModal(`.${type}-modal`);
+        }
+    };
+
+    return api;
 }
+/* eslint-disable no-unused-vars */
+let isGameRulesRendered = false;
+let isLeaderboardRendered = false;
+let isLaunchRendered = false;
 
+/**
+ * 渲染启动模态窗口。
+ * @description 渲染启动模态窗口，包括玩家数量选择、符号选择、游戏板大小选择和按钮。
+ */
 function renderLaunchModal(){
-    const launcher = document.createElement('div');
-    launcher.id = 'launcher';
+    console.log("renderLaunchModal is called");
+    let launchModal = document.querySelector('.launch-modal');
+    let launcher = document.querySelector('#container'); 
+    if(!launcher){
+    // 创建 Launcher 容器
+    launcher = document.createElement('div');
+    launcher.id = 'container';
+    launchModal.appendChild(launcher);
+    }
 
+    launcher.innerHTML = '';
+ 
     // 创建标题
     const title = document.createElement('h1');
     title.id = 'title';
@@ -80,18 +125,26 @@ function renderLaunchModal(){
         buttonDiv.appendChild(button);
     });
     launcher.appendChild(buttonDiv);
-
-    // 将整个 Launcher 插入到主体中的 'launch-container' div
-    const launchContainer = document.querySelector('.launch-container');
-    launchContainer.appendChild(launcher);
+    console.log('Launch modal is rendered');
+    
 }
 
+/**
+ * 渲染排行榜模态窗口。
+ * @description 渲染排行榜模态窗口，包括玩家排名、玩家名称、玩家分数和按钮。
+ */
 function renderLeaderboardModal() {
+    console.log('Leaderboard modal is rendered');
+    // 创建 Leaderboard 容器
 }
 
+/**
+ * 渲染游戏规则模态窗口。
+ * @description 渲染游戏规则模态窗口，包括游戏规则、游戏规则的标题、游戏规则的内容和按钮。
+ * @param {Object} gameRulesData - 包含游戏规则的数据。
+ */
 function renderGameRulesModal(gameRulesData) {
     let gameRulesModal = document.querySelector('.game-rule-modal');
-    
     let gameRulesContainer = gameRulesModal.querySelector('.container');
     
     if (!gameRulesContainer) {
@@ -107,6 +160,7 @@ function renderGameRulesModal(gameRulesData) {
 
     btnClose.addEventListener('click', function() {
         hideModal('.game-rule-modal');
+        getModals('launch').show();
     });
     
     gameRulesData.sections.forEach(section => {
@@ -159,12 +213,13 @@ function renderGameRulesModal(gameRulesData) {
         
         gameRulesContainer.appendChild(sectionElem);
     });
-    
-    gameRulesModal.style.display = 'block';
-    document.querySelector(".launch-container").style.display = "none";
+    console.log('Game rules modal is rendered');
 }
 
-
+/**
+ * 创建关闭按钮。
+ * @returns {HTMLButtonElement} - 返回一个关闭按钮。
+ */
 function closeBtnCreator(){
     const closeButton = document.createElement('button');
     closeButton.classList.add('close-button');
@@ -173,15 +228,53 @@ function closeBtnCreator(){
 }
 
 /**
- * 显示模态窗口并传递特定消息。
- * @param {string} message - 要显示的消息
+ * 显示模态窗口。
+ * @description 显示模态窗口，包括游戏规则、排行榜和启动模态窗口。
+ * @param {String} type modal 的类型
+ * @param {Object} optionalData 包含游戏规则的数据。
  */
-function showmodal(message){
-    // show modal
+function showModal(type, optionalData) {
+    // 先隐藏所有可能打开的模态窗口
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach((modal) => {
+        modal.style.display = 'none';
+    });
+
+    // 根据 type 参数打开对应的模态窗口
+    switch (type) {
+        case 'gameRules':
+            if (!isGameRulesRendered) {
+                renderGameRulesModal(optionalData);
+                isGameRulesRendered = true;
+            }
+            document.querySelector('.game-rule-modal').style.display = 'block';
+            break;
+        case 'leaderboard':
+            if (!isLeaderboardRendered) {
+                renderLeaderboardModal();
+                isLeaderboardRendered = true;
+            }
+            document.querySelector('.leaderboard-modal').style.display = 'block';
+            break;
+        case 'launch':
+            if (!isLaunchRendered) {
+                renderLaunchModal();
+                isLaunchRendered = true;
+            }
+            document.querySelector('.launch-modal').style.display = 'block';
+            break;
+        default:
+            console.log('Unknown modal type');
+    }
 }
+
 
 /**
  * 隐藏模态窗口。
+ * @description 隐藏模态窗口。
+ * @param {String} modalSelector modal 的选择器
+ * @example
+ * hideModal('.launch-modal');
  */
 function hideModal(modalSelector) {
     const modal = document.querySelector(modalSelector);

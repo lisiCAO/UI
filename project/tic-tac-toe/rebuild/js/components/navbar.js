@@ -7,7 +7,7 @@
  * - Implement dynamic player name input
  */
 
-import { getModal } from "./modals.js";
+import { utilities } from "../modules/utilities.js";
 
 // TODO: Add logic to update scores dynamically based on game progress
 let gameRulesData = {};
@@ -89,6 +89,7 @@ function setupLaunchNavbar(){
 
 function loadGameRules() {
 
+
     fetch("../../assets/data/game-guide.json")
         .then((response) => {
             if (!response.ok) {
@@ -103,7 +104,7 @@ function loadGameRules() {
             if (showRulesButton) {
                 showRulesButton.addEventListener('click', function(event){
                     event.preventDefault();
-                    getModal('gameRules')(gameRulesData)
+                    utilities.gameRulesModal.show(gameRulesData);
                 });
             }
         })

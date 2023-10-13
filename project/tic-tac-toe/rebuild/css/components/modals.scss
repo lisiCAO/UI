@@ -12,6 +12,7 @@
 
     &.launcher-modal {
         // 特定的启动器模态窗口样式
+        display: block;
         width: 80vw;
         max-width: 500px;
     }

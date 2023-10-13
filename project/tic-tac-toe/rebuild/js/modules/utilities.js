@@ -12,7 +12,16 @@
 // TODO: Define and initialize the board variable
 // TODO: Define and initialize players' data
 // TODO: Create a function to toggle the current turn
-const utilities = (() => {
+
+import * as Modals from "../components/modals.js";
+import { Navbar } from "../components/navbar.js";
+
+export const utilities = (() => {
+
+  const launchNavbar = new Navbar("launch");
+  const launchModal = Modals.getModals('launch');
+  const gameModal = Modals.getModals('game');
+  const gameRulesModal = Modals.getModals('gameRules');
 
     let BOARD_SIZE = 3;
 
@@ -205,7 +214,10 @@ const gameDataInitialization = {
 return {
   board,
   players,
-  ...boardMethods,
+  launchNavbar,
+  launchModal,
+  gameModal ,
+  gameRulesModal ,
   ...playerMethods,
   ...gameLogicMethods,
   ...gameDataInitialization

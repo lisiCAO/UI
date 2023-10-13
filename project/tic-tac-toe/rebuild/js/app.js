@@ -16,7 +16,7 @@
 
 // import parts of the app
 import * as GameLogic from "./modules/gameLogic.js";
-import * as Utilities from "./modules/utilities.js";
+import { utilities } from "./modules/utilities.js";
 import { Navbar } from "./components/navbar.js";
 import * as GameBoard from "./components/game-board.js";
 import * as Modals from "./components/modals.js";
@@ -25,9 +25,13 @@ import * as Modals from "./components/modals.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM loaded");
-  const launchNavbar = new Navbar('launch');
-  launchNavbar.render();
+
+  console.log(utilities);
+  console.log(utilities.launchModal);
+
+  utilities.launchNavbar.render();
   console.log("renderLaunchNavbar is called");
-  launchNavbar.setup();
-  
+  utilities.launchNavbar.setup();
+
+  utilities.launchModal.show();
 });

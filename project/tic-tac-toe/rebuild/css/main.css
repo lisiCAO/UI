@@ -213,6 +213,7 @@ aside {
   z-index: 1000;
 }
 .modal.launcher-modal {
+  display: block;
   width: 80vw;
   max-width: 500px;
 }
